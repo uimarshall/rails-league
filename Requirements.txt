@@ -1,0 +1,6 @@
+Player.first -- finds the first entry in the row.
+Player.find(1) -- finds the first column in our db essentially the id.,
+The 'find' method looks for an 'id' by default. It finds a specific entry.
+The find_by method will is an upgrade on the find method,
+It will find a particular column with 'column name' and 'value',
+e.g. Player.find_by(age: 26) -- find a column/returns a player whose age is 26.
