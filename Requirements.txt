@@ -1,6 +1,30 @@
 Player.first -- finds the first entry in the row.
-Player.find(1) -- finds the first column in our db essentially the id.,
+Player.find(1) -- finds the first column in our db essentially the id. 1=id of 1,
 The 'find' method looks for an 'id' by default. It finds a specific entry.
 The find_by method will is an upgrade on the find method,
 It will find a particular column with 'column name' and 'value',
 e.g. Player.find_by(age: 26) -- find a column/returns a player whose age is 26.
+
+# MANY_TO_MANY RELATIONSHIP
+*************************************************************************
+':through' method is only applicable to MANY_TO_MANY RELATIONSHIP.
+through is used to join or link a 'has_many to has_many'relationship which we will have,
+a third table that will belong to both the MANY_TO_MANY table, and join both by 'through.
+class Player < ApplicationRecord
+   has_many :appearances
+   has_many :games through appearances
+end
+class Game < ApplicationRecord
+   has_many :appearances
+   has_many :players through appearances
+end
+class Appearance < ApplicationRecord
+   belongs_to :player
+   belongs_to :game
+end
+
+'has_many:through' allows associations even when there isn't a direct connection btw models.
+'rails g model address street:string player:references'-- will create a player_id in the address table
+# SCHEMA
+You can only make changes to the schema by working on the migrations file.
+Delete migrations only when it is down, the status will be up while the file won't be found.
